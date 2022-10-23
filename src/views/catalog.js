@@ -7,7 +7,7 @@ const catalogTemplate = (memes) => html`
             <div id="memes">
                 ${memes.length == 0
                 ? html`<p class="no-memes">No memes in database.</p>`
-                : memes.map(memeCard)}
+                : memes.map(memeCard) }
                 </div>
         </section>`
 
@@ -26,6 +26,6 @@ const catalogTemplate = (memes) => html`
         `
 
         export async function catalogPage(ctx) {
-            const memes = await getAllMems();
+            const memes = await getAllMems()
             ctx.render(catalogTemplate(memes))
         }

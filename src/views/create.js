@@ -33,7 +33,6 @@ export async function createPage(ctx) {
         }
 
 await createMeme({title, description, imageUrl});
-console.log('dasdada');
 ctx.page.redirect('/memes')
     }
 }

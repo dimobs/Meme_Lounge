@@ -6,7 +6,6 @@ async function request(url, option) {
         const response = await fetch(hostname + url, option);
 
         if (response.ok == false) {
-            console.log(response);
             const error = await response.json();
             throw new Error(error.message);
         }
@@ -91,8 +90,7 @@ export async function register(username, email, password, gender) {
         token: result.accessToken
     };
     setUserData(userData);
-    console.log(result);
-    return result;
+        return result;
 }
 
 export async function logout() {

@@ -24,8 +24,8 @@ page('/memes', catalogPage);
 page('/login', loginPage);
 page('/register', registerPage);
 page('/create', createPage);
-page('/edit', editPage);
-page('/details:id', detailsPage);
+page('/edit/:id', editPage);
+page('/details/:id', detailsPage);
 page('/profile', profilePage);
 
 updateUserNav()
