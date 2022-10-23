@@ -9,6 +9,7 @@ return api.get('/data/memes?sortBy=_createdOn%20desc');
 }
 
 export async function getbyId(id) {
+    console.log(id);
     return api.get('/data/memes/' + id)
 }
 

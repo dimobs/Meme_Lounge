@@ -4,8 +4,9 @@ const hostname = 'http://localhost:3030';
 async function request(url, option) {
     try {
         const response = await fetch(hostname + url, option);
-     
+
         if (response.ok == false) {
+            console.log(response);
             const error = await response.json();
             throw new Error(error.message);
         }
@@ -18,9 +19,9 @@ async function request(url, option) {
         // }
 
         try {
-return await response.json();
+            return await response.json();
         } catch (err) {
-return response;
+            return response;
         }
 
     } catch (err) {
@@ -90,7 +91,7 @@ export async function register(username, email, password, gender) {
         token: result.accessToken
     };
     setUserData(userData);
-console.log(result);
+    console.log(result);
     return result;
 }
 
