@@ -4,7 +4,7 @@ const hostname = 'http://localhost:3030';
 async function request(url, option) {
     try {
         const response = await fetch(hostname + url, option);
-        console.log(hostname + url);
+     
         if (response.ok == false) {
             const error = await response.json();
             throw new Error(error.message);
@@ -90,11 +90,11 @@ export async function register(username, email, password, gender) {
         token: result.accessToken
     };
     setUserData(userData);
-
+console.log(result);
     return result;
 }
 
 export async function logout() {
-    await get('/users/logout');
+    get('/users/logout');
     clearUserData();
 }

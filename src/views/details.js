@@ -1,13 +1,10 @@
-import { greet } from '../api/greetings.js';
 import { html } from '../lib.js';
 
-const time = greet();
-
-const homeTemplete = () => html	`
+const detailsTemplete = () => html	`
       <section id="welcome">
             <div id="welcome-container">
                 <h1>Welcome To Meme Lounge</h1>
-                <span class="welcome1">${time}</span>
+                <img src='' alt="meme">
                 <img src="../../images/welcome-meme.jpg" alt="meme">
                 <h2>Login to see our memes right away!</h2>
                 <div id="button-div">
@@ -17,6 +14,6 @@ const homeTemplete = () => html	`
             </div>
         </section>`
 
-        export function homePage(ctx) {
-            ctx.render(homeTemplete())
+        export function detailsPage(ctx) {
+            ctx.render(detailsTemplete())
         }

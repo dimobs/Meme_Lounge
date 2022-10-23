@@ -60,3 +60,9 @@ section h1 {
     text-align: center;
 }
 
+.welcome1 {
+    color: green;
+    text-align: right;
+    text-transform: capitalize;
+font-size: 44px;
+}
