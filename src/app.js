@@ -24,7 +24,7 @@ page('/memes', catalogPage);
 page('/login', loginPage);
 page('/register', registerPage);
 page('/create', createPage);
-page('/edit:id', editPage);
+page('/edit', editPage);
 page('/details:id', detailsPage);
 page('/profile', profilePage);
 

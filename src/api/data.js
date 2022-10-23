@@ -8,6 +8,10 @@ export async function getAllMems() {
 return api.get('/data/memes?sortBy=_createdOn%20desc');
 }
 
+export async function getbyId(id) {
+    return api.get('/data/memes/' + id)
+}
+
 export async function createMeme(item) {
     return api.post('/data/memes', item);    
 }

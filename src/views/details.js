@@ -1,19 +1,28 @@
+import { getbyId } from '../api/data.js';
 import { html } from '../lib.js';
 
-const detailsTemplete = () => html	`
-      <section id="welcome">
-            <div id="welcome-container">
-                <h1>Welcome To Meme Lounge</h1>
-                <img src='' alt="meme">
-                <img src="../../images/welcome-meme.jpg" alt="meme">
-                <h2>Login to see our memes right away!</h2>
-                <div id="button-div">
-                    <a href="/login" class="button">Login</a>
-                    <a href="/register" class="button">Register</a>
+const detailsTemplete = (meme) => html	`
+        <section id="meme-details">
+            <h1>Meme Title:${meme.title}
+
+            </h1>
+            <div class="meme-details">
+                <div class="meme-img">
+                    <img alt="meme-alt" src=${meme.imageUrl}>
+                </div>
+                <div class="meme-description">
+                    <h2>Meme Description</h2>
+                    <p>${meme.description}</p>
+
+                    <!-- Buttons Edit/Delete should be displayed only for creator of this meme  -->
+                    <a class="button warning" href="/edit">Edit</a>
+                    <button class="button danger">Delete</button>
+                    
                 </div>
             </div>
         </section>`
 
-        export function detailsPage(ctx) {
-            ctx.render(detailsTemplete())
+        export async function detailsPage(ctx) {
+const meme = await getbyId(ctx.params.id);
+            ctx.render(detailsTemplete(meme))
         }
