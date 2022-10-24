@@ -8,12 +8,8 @@ import { editPage } from './views/edit.js';
 import { detailsPage } from './views/details.js';
 import { profilePage } from './views/profile.js';
 import { logout } from './api/api.js';
-
-/*debug*/
-import * as api from './api/data.js';
 import { getUserData } from './util.js';
 import { greet } from './api/greetings.js';
-window.api = api;
 
 const root = document.querySelector('main');
 document.getElementById('logoutBtn').addEventListener('click', onLogout);

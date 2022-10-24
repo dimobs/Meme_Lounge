@@ -1,5 +1,6 @@
 import {  editItem, getbyId } from '../api/data.js';
 import { html } from '../lib.js';
+import { notify } from '../notify.js';
 
 const detailsTemplete = (meme, onSubmit) => html`
 <section id="edit-meme">
@@ -31,7 +32,7 @@ const detailsTemplete = (meme, onSubmit) => html`
                 const imageUrl = formData.get('imageUrl').trim();
 
                 if(title == '' || description == '' || imageUrl == ''){
-                    return alert('All fields are required!');
+                    return notify('All fields are required!');
                 }
 
                  await editItem(ctx.params.id, {
