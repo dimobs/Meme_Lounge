@@ -1,6 +1,6 @@
 import { register } from '../api/api.js';
 import { html } from '../lib.js';
-import {notify} from '../notify.js';
+import { notify } from '../notify.js';
 
 
 const registerTemplete = (onSubmit) => html`
@@ -43,9 +43,18 @@ export function registerPage(ctx) {
         const repeatPass = formData.get('repeatPass').trim();
         const gender = formData.get('gender').trim();
 
-        if (username == '' || email == '' || password == '' || repeatPass == '' || gender == '') {
-            return notify('All fields are required!');
+const abv = formData.keys();
+console.log(abv);
+
+        for (let [key, value] of formData.entries()) {
+            if (value == '') {
+                return notify(`Please, check the ${key} value!`)
+            }
         }
+
+
+        // if (username == '' || email == '' || password == '' || repeatPass == '' || gender == '') {
+        //     return notify('All fields are required!');}
         if (password != repeatPass) {
             return notify('Password don\'t match');
         }
