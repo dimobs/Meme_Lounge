@@ -14,6 +14,9 @@ const detailsTemplete = (meme, isOwner, onDelete) => html`
                 <div class="meme-description">
                     <h2>Meme Description</h2>
                     <p>${meme.description}</p>
+                    <p>Type:${meme.type 
+                            ? meme.type : 'Fiction' }
+                            </p>
                     ${isOwner ? html`<a class="button warning" href="/edit/${meme._id}">Edit</a>
                     <button @click=${onDelete} class="button danger">Delete</button>`
                             : null}

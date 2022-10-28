@@ -1,46 +1,60 @@
-import {  editItem, getbyId } from '../api/data.js';
+import { editItem, getbyId } from '../api/data.js';
 import { html } from '../lib.js';
 import { notify } from '../notify.js';
 
 const detailsTemplete = (meme, onSubmit) => html`
 <section id="edit-meme">
-<form @submit=${onSubmit} id="edit-form">
-    <h1>Edit Meme</h1>
-    <div class="container">
-        <label for="title">Title</label>
-        <input id="title" type="text" placeholder="Enter Title" name="title" .value=${meme.title}>
-        <label for="description">Description</label>
-        <textarea id="description" placeholder="Enter Description" name="description" .value=${meme.description}>
+    <form @submit=${onSubmit} id="edit-form">
+        <h1>Edit Meme</h1>
+        <div class="container">
+            <label for="title">Title</label>
+            <input id="title" type="text" placeholder="Enter Title" name="title" .value=${meme.title}>
+            <label for="description">Description</label>
+            <textarea id="description" placeholder="Enter Description" name="description" .value=${meme.description}>
                   </textarea>
-        <label for="imageUrl">Image Url</label>
-        <input id="imageUrl" type="text" placeholder="Enter Meme ImageUrl" name="imageUrl" .value=${meme.imageUrl}>
-        <input type="submit" class="registerbtn button" value="Edit Meme">
-    </div>
-</form>
+            <label for="imageUrl">Image Url</label>
+            <input id="imageUrl" type="text" placeholder="Enter Meme ImageUrl" name="imageUrl" .value=${meme.imageUrl}>
+            <p class="field">
+                <label for="type">Type</label>
+                <span class="input">
+                    <select id="type" name="type" .value=${meme.type}>
+                        <option value="Fiction">Fiction</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Mistery">Mistery</option>
+                        <option value="Classic">Clasic</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </span>
+            </p>
+            <input type="submit" class="registerbtn button" value="Edit Meme">
+        </div>
+    </form>
 </section>`
 
-        export async function editPage(ctx) {
-            const meme = await getbyId(ctx.params.id);
-            ctx.render(detailsTemplete(meme, onSubmit))
+export async function editPage(ctx) {
+    const meme = await getbyId(ctx.params.id);
+    ctx.render(detailsTemplete(meme, onSubmit))
 
-            async function onSubmit(event) {
-                event.preventDefault();
-                const formData = new FormData(event.target);
+    async function onSubmit(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
 
-                const title = formData.get('title').trim();
-                const description = formData.get('description').trim();
-                const imageUrl = formData.get('imageUrl').trim();
+        const title = formData.get('title').trim();
+        const description = formData.get('description').trim();
+        const imageUrl = formData.get('imageUrl').trim();
+        const type = formData.get('type').trim();
 
-                if(title == '' || description == '' || imageUrl == ''){
-                    return notify('All fields are required!');
-                }
+        if (title == '' || description == '' || imageUrl == '' || type == '') {
+            return notify('All fields are required!');
+        };
 
-                 await editItem(ctx.params.id, {
-                    title,
-                    description,
-                    imageUrl
-                 });
-                 ctx.page.redirect('/memes')
+        await editItem(ctx.params.id, {
+            title,
+            description,
+            imageUrl,
+            type
+        });
 
-            }
-        }
+        ctx.page.redirect('/memes');
+    }
+}

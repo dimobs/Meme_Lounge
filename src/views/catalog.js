@@ -18,6 +18,9 @@ const catalogTemplate = (memes) => html`
                             <p class="meme-title">${meme.title}</p>
                             <img class="meme-image" alt="meme-img" src=${meme.imageUrl}>
                         </div>
+                        <p>Type:${meme.type 
+                            ? meme.type : 'Fiction' }
+                            </p>
                         <div id="data-buttons">
                             <a class="button" href="/details/${meme._id}">Details</a>
                         </div>
